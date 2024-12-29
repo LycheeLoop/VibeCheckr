@@ -90,6 +90,7 @@ def youtube_searcher():
             view_count=video_data.get('view_count') if video_data else None,
             like_count=video_data.get('like_count') if video_data else None,
             comment_count=video_data.get('comment_count') if video_data else None,
+            channel_name=video_data.get('channel_name') if video_data else None,
             youtube_url=youtube_url,  # Pass youtube_url to be rendered in HTML
             platform="youtube",
             search_performed=search_performed,

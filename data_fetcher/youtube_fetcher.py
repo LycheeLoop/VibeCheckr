@@ -94,6 +94,7 @@ def get_youtube_details(YOUTUBE_API_KEY, video_id, timeout=50):
             view_count = video_data['statistics'].get('viewCount', 0)
             like_count = video_data['statistics'].get('likeCount', 0)
             comment_count = video_data['statistics'].get('commentCount', 0)
+            channel_name = video_data['snippet']['channelTitle']
 
             return{
                 'title': title,
@@ -102,7 +103,8 @@ def get_youtube_details(YOUTUBE_API_KEY, video_id, timeout=50):
                 'post_date': post_date,
                 'view_count': view_count,
                 'like_count': like_count,
-                'comment_count': comment_count
+                'comment_count': comment_count,
+                'channel_name': channel_name
             }
         else:
             return "Video not found"
