@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Social Media Sentiment Analyzer
+{% endblock %}
+{% block content %}
+
+
+
+<!----- --------------Content section 1/ SELECT SOCIAL MEDIA PLATFORM TO ANALYZE------------------->
+<div class="cover-container d-flex flex-column justify-content-center align-items-center min-vh-100">
+
+  <main class="text-center">
+    <h1>VibeCheckr.</h1>
+    <p class="lead">Get real-time sentiment analysis for YouTube, Reddit, and TikTok. Track trends, understand public perception, and more.</p>
+    <style>
+      .hover-button {
+        background-color: white;
+        color: black;
+        border: none;
+      }
+
+      .hover-button:hover {
+        background-color: #807f81;
+        color: white;
+      }
+    </style>
+
+    <p class="lead">
+      <a href="{{ url_for('youtube_searcher') }}" class="btn btn-lg fw-bold hover-button">YouTube</a>
+      <a href="{{ url_for('reddit_searcher') }}" class="btn btn-lg fw-bold hover-button">Reddit</a>
+      <a href="{{ url_for('tiktok_searcher') }}" class="btn btn-lg fw-bold hover-button">TikTok</a>
+    </p>
+  </main>
+
+</div>
+
+<footer class="text-white-50">
+    <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+</footer>
+
+{% endblock %}

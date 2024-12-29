@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!----- --------------Content section 1/ SEARCH FOR REDDIT SECTION------------------->
+<section id="scroll">
+  <div class="container d-flex flex-column justify-content-center align-items-center min-vh-100">
+    <h2 class="text-center">Reddit Sentiment Analysis</h2>
+
+    <!-- Render the form -->
+    <form id="search-form" method="POST">
+      {{ form.hidden_tag() }}
+
+      <!-- Hidden field for platform -->
+      <input type="hidden" name="platform" value="reddit">
+
+      <div class="mb-3">
+        {{ form.post_url(class="form-control", placeholder=custom_label) }}
+      </div>
+
+      <style>
+        #search-button {
+          background-color: white;
+          color: black;
+          outline: none;
+          border: none;
+        }
+
+        #search-button:hover {
+          background-color: #807f81; /* Adjust to your preferred hover color */
+          color: white; /* Optional: you can change text color on hover as well */
+        }
+      </style>
+
+      <button type="submit" class="btn btn-primary" id="search-button">
+        <span class="spinner-border d-none" role="status"></span> Analyze
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- This section is initially empty and will be populated via AJAX -->
+<div id="results-section" class="row mt-2" {% if reddit_url %}data-reddit-url="{{ reddit_url }}"{% endif %}>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- Include Lottie and your custom scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+{% endblock %}

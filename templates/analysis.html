@@ -1,0 +1,229 @@
+<!------ ONLY INCLUDES SENTIMENT ANALYSIS FOR REQUESTED CONTENT --------->
+
+
+<!-- Error alert message if video or post if not found -->
+
+{% if search_performed %}
+    {% if error_message %}
+        <div class="d-flex flex-column align-items-center">
+            <!-- SVG Icon Above the Alert -->
+            <img src="{{ url_for('static', filename='assets/img/no-results.svg') }}" alt="Error Icon" style="width: 50px; height: 50px; margin-bottom: 10px;">
+
+            <!-- Alert Box -->
+            <div class="alert alert-danger text-center" role="alert">
+                {{ error_message }}
+            </div>
+        </div>
+    {% else %}
+
+<!-- Content section 2/ Results and sentiment analysis -->
+
+        <!-- First Row: Robotic Animation and Alert Box -->
+        <div class="container my-4">
+          <div class="row justify-content-center align-items-center">
+            <!-- Animation on the left -->
+            <div class="col-auto d-flex align-items-center">
+              <div id="robotic-animation" style="width: 100px; height: 100px; margin-right: 20px;"></div>
+            </div>
+
+            <!-- Alert box on the right (sentiment analysis), centered within the container -->
+            <div class="col-8">
+              <div class="alert text-center" role="alert" style="background-color: #050101; color: #ffffff; border: 1px solid #807f81;">
+                <h4 class="alert-heading">Sentiment Analysis</h4>
+                <hr>
+                <!------ Placeholder for sentiment summary ----->
+                <div id="sentiment-summary">
+                    <p> Analyzing sentiment...Please wait. </p>
+                </div>
+
+                <!-- Placeholder for error message -->
+                <div id="error-message" class="alert alert-danger d-none mt-3" role="alert">
+                    <p>An error occurred during sentiment analysis. Please try a different video.</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Second Row: Icon and Stat Cards -->
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <!-- Icon on the left -->
+      <div class="col-auto d-flex align-items-center">
+        <div class="icon-container text-center">
+          <img src="{{ url_for('static', filename='assets/img/stats3.svg') }}" alt="Icon" style="width: 65px; height: 65px; margin-right: 20px;">
+        </div>
+      </div>
+
+      <!-- Cards section on the right -->
+      <div class="col">
+        <div
+          class="row row-cols-1 row-cols-sm-2 g-4"
+          id="results-section"
+          {% if platform == "youtube" %}
+            data-youtube-url="{{ youtube_url }}"
+          {% elif platform == "reddit" %}
+            data-reddit-url="{{ reddit_url }}"
+              {% endif %}
+        >
+
+
+          <!-- Card 1 - Views/Upvotes -->
+          <div class="col">
+            <div class="card widget-card border-light shadow-sm h-100">
+              <div class="card-body">
+                {% if platform == "youtube" %}
+                  <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Views</h5>
+                  <h4 class="card-subtitle text-body-secondary m-0 text-truncate">{{ view_count }}</h4>
+                {% elif platform == "reddit" %}
+                  <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Upvotes</h5>
+                  <h4 class="card-subtitle text-body-secondary m-0 text-truncate">{{ upvotes }}</h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 - Likes -->
+          <div class="col">
+            <div class="card widget-card border-light shadow-sm h-100">
+              <div class="card-body">
+                {% if platform == "youtube" %}
+                  <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Likes</h5>
+                  <h4 class="card-subtitle text-body-secondary m-0 text-truncate">{{ like_count }}</h4>
+                {% elif platform == "reddit" %}
+                  <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Subreddit Members</h5>
+                  <h4 class="card-subtitle text-body-secondary m-0 text-truncate">{{ subreddit_members }}</h4>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 - Comments -->
+          <div class="col">
+            <div class="card widget-card border-light shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Comments</h5>
+                <h4 class="card-subtitle text-body-secondary m-0 text-truncate">{{ comment_count }}</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 - Date Posted -->
+          <div class="col">
+            <div class="card widget-card border-light shadow-sm h-100">
+              <div class="card-body">
+                <h5 class="card-title widget-card-title mb-2" style="font-size: 1rem;">Date Posted</h5>
+                <h4 class="card-subtitle text-body-secondary m-0 text-truncate" style="font-size: 0.8rem !important;">{{ post_date }}</h4>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+        <!------ DISPLAY CARD horizontal (THUMBNAIL/TITLE/DESCRIPTION) ------>
+        {% if platform == "youtube" %}
+
+            <div class="d-flex justify-content-center pt-5">
+              <div class="card px-3 position-relative" style="width: 60rem; background-color: #050101; border: 1px solid #807f81; padding-left: 15px; padding-right: 15px;">
+
+                <!-- Custom SVG Thumbtack Icon -->
+                <img src="{{ url_for('static', filename='assets/img/youtube.svg') }}" alt="Thumbtack Icon" class="thumbtack-icon">
+
+                <!-- Title Row -->
+                <div class="row gy-1 pt-2"> <!-- Smaller gap between rows -->
+                  <div class="col-12">
+                    <div class="card-body text-center">
+                      <h5 class="card-title custom-title" style="color: #ffffff">{{ title }}</h5> <!-- Centered title spanning full width with custom color -->
+                      <hr style="border: 1px solid #ffffff; margin: 10px 0;">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Content Row: Thumbnail, Description, and Button -->
+                <div class="row gy-1 align-items-center"> <!-- Center elements vertically in row -->
+
+                  <!-- Thumbnail Column -->
+                  <div class="col-md-5 d-flex align-items-center justify-content-center">
+                    <img src="{{ thumbnail }}" alt="Thumbnail Image" style="max-width: 100%; height: 250px; object-fit: contain;"> <!-- Larger thumbnail size within column -->
+                  </div>
+
+                  <!-- Description Column -->
+                  <div class="col-md-4 d-flex align-items-center">
+                    <div style="max-height: 200px; overflow-y: auto; color: #ffffff; scrollbar-color: #ffffff; scrollbar-width: thin;">
+                      <p class="card-text">{{ description }}</p> <!-- Scrollable description with custom text and scrollbar colors -->
+                    </div>
+                  </div>
+
+                  <!-- Button Column -->
+                  <div class="col-md-3 d-flex align-items-center justify-content-center"> <!-- Center button in column -->
+                    <a href="{{ youtube_url }}" class="btn btn-primary btn-custom">Watch Video</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <style>
+              .btn-custom {
+                background-color: #d13434; /* Default button color */
+                color: #ffffff;
+                border: none;
+                text-decoration: none;
+              }
+
+              .btn-custom:hover {
+                background-color: #807f81; /* Hover color */
+              }
+
+              .custom-title {
+                color: #ffffff; /* Custom color for the title */
+              }
+
+              /* Custom SVG Thumbtack Icon Position */
+              .thumbtack-icon {
+                position: absolute;
+                top: -10px; /* Positioning icon slightly above the card */
+                right: -10px; /* Positioning icon slightly outside the card */
+                width: 30px; /* Size of the icon */
+                height: 30px;
+              }
+
+              /* Custom scrollbar styles for WebKit browsers */
+              .card-text::-webkit-scrollbar {
+                width: 8px;
+              }
+
+              .card-text::-webkit-scrollbar-thumb {
+                background-color: #11184a; /* Scrollbar color */
+                border-radius: 4px;
+              }
+
+              .card-text::-webkit-scrollbar-track {
+                background-color: #ffffff; /* Scrollbar track color */
+              }
+            </style>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+
+<! ----------SCROLL UP BUTTON---------------->
+
+
+
+<div class="d-flex justify-content-end fixed-button">
+  <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" class="btn btn-lg p-0">
+    <img src="{{ url_for('static', filename='assets/img/up-arrow.svg') }}" alt="Scroll to top" width="36" height="36">
+  </button>
+</div>

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="row justify-content-center w-100">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Contact Us</h4>
+          <p class="text-center text-muted mb-4" style="font-size: 0.9rem;">
+            Have questions or found an issue? Let us know by filling out the form below, and we'll get back to you as soon as possible.
+          </p>
+
+          <br>
+
+          <form id="contact-form" method="POST" action="{{ url_for('contact') }}">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+              {{ form.name.label(class="form-label") }}
+              {{ form.name(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.email.label(class="form-label") }}
+              {{ form.email(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ form.message.label(class="form-label") }}
+              {{ form.message(class="form-control") }}
+            </div>
+            <div class="d-grid">
+              {{ form.submit(class="btn custom-btn") }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-btn {
+    background-color: #050101; /* Initial button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+  }
+
+  .custom-btn:hover {
+    background-color: #807f81; /* Hover background color */
+    color: #f8f9fa; /* Hover text color */
+  }
+</style>
+
+{% endblock %}
