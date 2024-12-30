@@ -18,6 +18,7 @@ venv.bak/
 
 # Project-files
 sentiment_analysis/
+trained_model/
 
 
 # C extensions

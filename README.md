@@ -93,34 +93,43 @@ VibeCheckr is a web application that provides sentiment analysis for comments on
    ```bash
    git clone https://github.com/yourusername/vibecheckr.git
    cd vibecheckr
-Set Up a Virtual Environment:
+2. **Set Up a Virtual Environment**:
 
-bash
-Copy code
-python3 -m venv venv
-source venv/bin/activate  # On macOS/Linux
-venv\Scripts\activate     # On Windows
-Install Dependencies:
+    ```bash
 
-bash
-Copy code
-pip install -r requirements.txt
-Set Up Environment Variables: Create a .env file in the project root and add the following:
+    python3 -m venv venv
+    source venv/bin/activate  # On macOS/Linux
+    venv\Scripts\activate     # On Windows
+3. **Install Dependencies**:
 
-plaintext
-Copy code
-FLASK_APP=main.py
-FLASK_ENV=development
-SECRET_KEY=your_secret_key
-YOUTUBE_API_KEY=your_youtube_api_key
-REDDIT_CLIENT_ID=your_reddit_client_id
-REDDIT_SECRET=your_reddit_secret
-Run the Application:
+    ```bash
 
-bash
-Copy code
-flask run
-Access the App: Open your browser and navigate to http://127.0.0.1:5000.
+    pip install -r requirements.txt
+    
+
+4. **Set Up Environment Variables**:
+
+     Create a .env file in the project root and add the following:
+
+
+    FLASK_APP=main.py
+    FLASK_ENV=development
+    SECRET_KEY=your_secret_key
+    YOUTUBE_API_KEY=your_youtube_api_key
+    REDDIT_CLIENT_ID=your_reddit_client_id
+    REDDIT_SECRET=your_reddit_secret
+5. **Run the Application**:
+
+    ```bash
+    flask run
+6. **Access the App**: 
+Open your browser and navigate to http://127.0.0.1:5000.
+
+## Using the Trained Model
+
+The trained model is not included in the repository due to size limitations. You can download it from [Google Drive](https://drive.google.com/drive/folders/1ow-7NTdGmyHu9JAb7A76wh-VY2v_YftR?usp=sharing) and place it in the `trained_model/` directory to use it with this project.
+
+
 ---
 ### Usage
 
