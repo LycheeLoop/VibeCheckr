@@ -64,7 +64,7 @@ Open your browser and navigate to http://127.0.0.1:5000.
 
 ## Using the Trained Model
 
-The trained model is not included in the repository due to size limitations. You can download it from [Google Drive](https://drive.google.com/drive/folders/1ow-7NTdGmyHu9JAb7A76wh-VY2v_YftR?usp=sharing) and place it in the `trained_model/` directory to use it with this project.
+The trained model is not included in the repository due to size limitations. You can download it from [Hugging Face Hub](https://huggingface.co/lycheeloop/Vibecheckr/tree/main) and place it in the `trained_model/` directory to use it with this project.
 
 
 ---
