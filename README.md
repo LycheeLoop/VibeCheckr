@@ -117,7 +117,7 @@ The trained model is not included in the repository due to size limitations. You
 - SpaCy for sentiment analysis
 - Google Colab for model training
 
-**Deployment**: Heroku
+**Deployment**: Cloud Run
 
 **Database**: None 
 
